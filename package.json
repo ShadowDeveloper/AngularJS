@@ -1,0 +1,14 @@
+{
+  "name": "angularjs-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "angular": "^1.6.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rodrigo Souza (ShadowDeveloper)",
+  "license": "ISC"
+}

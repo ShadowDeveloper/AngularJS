@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hellow World</title>
+  <script src="./node_modules/angular/angular.js"></script>
+  <script>
+    angular.module("myApp",[]);
+
+    //O modo abaixo isola em um escolo o controller
+    angular.module("myApp").controller("myAppCtrl", function($scope){
+      $scope.message = "Hellow World";
+    });
+  </script>
+</head>
+<body ng-controller="myAppCtrl">  
+    {{message}}
+</body>
+</html>
