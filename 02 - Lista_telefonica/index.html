@@ -75,7 +75,7 @@
     <input class="form-control" type="text" name="nome" ng-model="c.nome" id="nomeLista">
     <input class="form-control" type="tel" name="tel" ng-model="c.telefone" id="telefoneLista">
     <!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(peopleName,peopleTel)">Adicionar contato</button> Form 2-->
-    <button class="btn btn-primary btn-block" ng-click="adicionarContato(c)">Adicionar contato</button>
+    <button class="btn btn-primary btn-block" ng-disabled="!c.nome || !c.telefone " ng-click="adicionarContato(c)">Adicionar contato</button>
     {{c}}
   </div>
 
