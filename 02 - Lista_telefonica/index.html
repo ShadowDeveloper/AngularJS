@@ -57,8 +57,10 @@
       }
 
 
-      $scope.apagarContato = function(){
-
+      $scope.apagarContato = function(contatos){
+        $scope.contatos = contatos.filter(function(contato){
+          if(!contato.selecionado) return contato;
+        });
       }
     }
   </script>
@@ -97,7 +99,7 @@
         </select>
         <!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(peopleName,peopleTel)">Adicionar contato</button> Form 2-->
         <button class="btn btn-primary btn-block" ng-disabled="!s.nome || !s.telefone" ng-click="adicionarContato(s)">Adicionar contato</button>
-        <button class="btn btn-danger btn-block" ng-click="apagarContato(s)">Apagar contato</button>
+        <button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)">Apagar contato</button>
       </div>
       <!-- {{s}} -->
       
