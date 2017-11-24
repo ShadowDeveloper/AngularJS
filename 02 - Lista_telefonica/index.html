@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title ng-controller="generalCtrl">{{title}}</title>
 
   <script src="../node_modules/angular/angular.js"></script>
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -15,24 +15,26 @@
 
     var app = angular.module('listaTelefonica', []);
     app.controller('listaTelefonicaCtrl', listaTelefonicaController);
+    app.controller('generalCtrl', generalController);
+
+    function generalController($scope){ //Experimento
+      $scope.title = "Lista Telefônica";
+    }
 
     function listaTelefonicaController($scope) {
       $scope.message = "Lista Telefônica";
 
         $scope.contatos = [
-          {
-            nome: "Pedro",
-            telefone: "9999-9999",
-          },
-          {
-            nome: "Sami",
-            telefone: "8888-9999",
-          },
-          {
-            nome: "Elson",
-            telefone: "8877-9977",
-          }
-        ]
+          {nome: "Pedro",telefone: "9999-9999"},
+          {nome: "Sami",telefone: "8888-9999"},
+          {nome: "Elson",telefone: "8877-9977"}
+        ];
+        $scope.operadoras = [
+          {nome:"Vivo", codigo: 14, categoria:"Celular"},
+          {nome:"Oi", codigo: 15, categoria:"Celular"},
+          {nome:"Claro", codigo: 13, categoria:"Fixo"},
+          {nome:"Tim", codigo: 13, categoria:"Fixo"}
+        ];
       
       $scope.adicionarContato = function(c){
       //$scope.adicionarContato = function(nome, telefone){ //Forma 2 
@@ -53,6 +55,13 @@
 
         console.log(c);
       }
+
+
+      $scope.apagarContato = function(contatos){
+        $scope.contatos = contatos.filter(function(contato){
+          if(!contato.selecionado) return contato;
+        });
+      }
     }
   </script>
 
@@ -61,17 +70,27 @@
 <body>
   
   <div ng-controller="listaTelefonicaCtrl" class="jumbotron text-center">
-    <h1 ng-bind="message"></h1>
+    <h2 ng-bind="message"></h2>
+    <!-- {{contatos}} -->
     <table class="table striped">
       <thead>
+        <td></td>
         <td>Nome</td>
         <td>Telefone</td>
+        <td>Operadora</td>
       </thead>
-      <tbody ng-repeat="c in contatos">
-        <td ng-repeat="value in c">{{value}}</td>
+      <tbody>
+        <tr ng-repeat="c in contatos" ng-class="{'selecionado fontBold': c.selecionado}">
+          <!-- <td ng-repeat="value in c">{{value}}</td> -->
+          <td><input type="checkbox" ng-model="c.selecionado"></td>
+          <td>{{c.nome}}</td>
+          <td>{{c.telefone}}</td>
+          <td>{{c.operadora.nome}}</td>
+        </tr>
       </tbody>
     </table>
     
+<<<<<<< HEAD
     <input class="form-control" type="text" name="nome" ng-model="c.nome" id="nomeLista">
     <input class="form-control" type="tel" name="tel" ng-model="c.telefone" id="telefoneLista">
     <!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(peopleName,peopleTel)">Adicionar contato</button> Form 2-->
@@ -82,3 +101,21 @@
 </body>
 
 </html>
+=======
+    <input class="form-control field-margin" type="text" name="nome" ng-model="s.nome" id="nomeLista">
+    <input class="form-control field-margin" type="tel" name="tel" ng-model="s.telefone" id="telefoneLista">
+    <select class="form-control field-margin" name="" id="" ng-model="s.operadora" ng-options="operadora.nome for operadora in operadoras"> <!-- Somente para mostrar as operadoras no select -->
+        <!-- <select class="form-control" name="" id="" ng-model="s.operadora" ng-options="operadora.codigo as operadora.nome for operadora in operadoras"> Para relacionar código com nome se utiliza o AS -->
+        <!-- <select class="form-control" name="" id="" ng-model="s.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras"> Para agrupar por categoria -->
+          <option value="">Selecione uma operadora</option>
+        </select>
+        <!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(peopleName,peopleTel)">Adicionar contato</button> Form 2-->
+        <button class="btn btn-primary btn-block" ng-disabled="!s.nome || !s.telefone" ng-click="adicionarContato(s)">Adicionar contato</button>
+        <button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)">Apagar contato</button>
+      </div>
+      <!-- {{s}} -->
+      
+    </body>
+    
+    </html>
+>>>>>>> 488e7a35e64b93ec90fe5c3e82fa378512efc735
