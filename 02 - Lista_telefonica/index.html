@@ -65,6 +65,13 @@
           if (!contato.selecionado) return contato;
         });
       }
+
+      vm.isContatoSelecionado = function(c){
+        var isContatoSelecionado = c.some(function(contato){
+          return contato.selecionado;
+        });
+        console.log(isContatoSelecionado);
+      }
     }
   </script>
 
@@ -105,8 +112,8 @@
     </select>
     <!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(peopleName,peopleTel)">Adicionar contato</button> Form 2-->
     <button class="btn btn-primary btn-block" ng-disabled="!s.nome || !s.telefone" ng-click="adicionarContato(s)">Adicionar contato</button>
-    <button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)">Apagar contato</button>
-    {{s}}
+    <button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)" ng-disabled="isContatoSelecionado(contatos)">Apagar contato</button>
+    <!-- {{s}} -->
   </div>
 
 </body>
