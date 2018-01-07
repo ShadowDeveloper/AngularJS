@@ -11,7 +11,7 @@ function routeManager($routeProvider, $locationProvider) {
   $routeProvider.
     when('/', {
       templateUrl: './partials/01 - HelloWorld/index.html',
-      controller: 'firstController'
+      controller: './controller/helloWorld-controller.js'
     }).when('/second', {
       templateUrl: './partials/02 - Lista_telefonica/index.html',
       controller: 'secondController'
