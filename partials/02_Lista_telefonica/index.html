@@ -1,0 +1,36 @@
+<div class="jumbotron text-center">
+    <h2 ng-bind="message"></h2>
+    <!-- {{contatos}} -->
+    <table class="table striped">
+      <thead>
+        <td></td>
+        <td>Nome</td>
+        <td>Telefone</td>
+        <td>Operadora</td>
+      </thead>
+      <tbody>
+        <tr ng-repeat="c in contatos" ng-class="{'selecionado fontBold': c.selecionado}">
+          <!-- <td ng-repeat="value in c">{{value}}</td> -->
+          <td>
+            <input type="checkbox" ng-model="c.selecionado">
+          </td>
+          <td>{{c.nome}}</td>
+          <td>{{c.telefone}}</td>
+          <td>{{c.operadora.nome}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <input class="form-control field-margin" type="text" name="nome" ng-model="s.nome" id="nomeLista">
+    <input class="form-control field-margin" type="tel" name="tel" ng-model="s.telefone" id="telefoneLista">
+    <select class="form-control field-margin" name="" id="" ng-model="s.operadora" ng-options="operadora.nome for operadora in operadoras">
+      <!-- Somente para mostrar as operadoras no select -->
+      <!-- <select class="form-control" name="" id="" ng-model="s.operadora" ng-options="operadora.codigo as operadora.nome for operadora in operadoras"> Para relacionar código com nome se utiliza o AS -->
+      <!-- <select class="form-control" name="" id="" ng-model="s.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras"> Para agrupar por categoria -->
+      <option value="">Selecione uma operadora</option>
+    </select>
+    <!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(peopleName,peopleTel)">Adicionar contato</button> Form 2-->
+    <button class="btn btn-primary btn-block" ng-disabled="!s.nome || !s.telefone" ng-click="adicionarContato(s)">Adicionar contato</button>
+    <button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)" ng-disabled="isContatoSelecionado(contatos)">Apagar contato</button>
+    <!-- {{s}} -->
+  </div>
