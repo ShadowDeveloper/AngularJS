@@ -10,9 +10,9 @@
     vm.message = "Lista Telefônica";
 
     vm.contatos = [
-      { nome: "Pedro", telefone: "9999-9999" },
-      { nome: "Sami", telefone: "8888-9999" },
-      { nome: "Elson", telefone: "8877-9977" }
+      { nome: "Pedro", telefone: "9999-9999", cor: 'red' },
+      { nome: "Sami", telefone: "8888-9999", cor: 'green' },
+      { nome: "Elson", telefone: "8877-9977", cor: 'yellow' }
     ];
     vm.operadoras = [
       { nome: "Vivo", codigo: 14, categoria: "Celular" },
@@ -48,12 +48,11 @@
       });
     }
 
-    vm.isContatoSelecionado = function (c) {
-      var isContatoSelecionado = c.some(function (contato) {
+    vm.isContatoSelecionado = function (contatos) {
+      return contatos.some(function (contato) {
         return contato.selecionado;
       });
-      console.log(isContatoSelecionado);
-    }
+    };
   }
 
 })();

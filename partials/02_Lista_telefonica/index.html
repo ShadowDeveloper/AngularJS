@@ -1,7 +1,7 @@
 <div class="jumbotron text-center">
     <h2 ng-bind="message"></h2>
     <!-- {{contatos}} -->
-    <table class="table striped">
+    <table ng-show="contatos.length > 0" class="table striped">
       <thead>
         <td></td>
         <td>Nome</td>
@@ -17,6 +17,7 @@
           <td>{{c.nome}}</td>
           <td>{{c.telefone}}</td>
           <td>{{c.operadora.nome}}</td>
+          <td><div style="width: 20px; height: 20px" ng-style="{'background-color': c.cor}"></div></td>
         </tr>
       </tbody>
     </table>
@@ -31,6 +32,6 @@
     </select>
     <!-- <button class="btn btn-primary btn-block" ng-click="adicionarContato(peopleName,peopleTel)">Adicionar contato</button> Form 2-->
     <button class="btn btn-primary btn-block" ng-disabled="!s.nome || !s.telefone" ng-click="adicionarContato(s)">Adicionar contato</button>
-    <button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)" ng-disabled="isContatoSelecionado(contatos)">Apagar contato</button>
+    <button class="btn btn-danger btn-block" ng-click="apagarContato(contatos)" ng-show="isContatoSelecionado(contatos)">Apagar contato</button>
     <!-- {{s}} -->
   </div>
