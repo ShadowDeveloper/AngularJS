@@ -33,11 +33,10 @@
       // nome: nome,
       // telefone: telefone
       //}); //Forma 2: forma mediana de se fazer. Ainda existe burocracia para criação do objeto. Existe maneira melhor com o proprio angularjs para se fazer
-
-      vm.contatos.push(angular.copy(c));
+      
+      vm.contatos.push(angular.copy(c)); //Forma 3: a melhor de se usar junto ao angular.copy
       delete vm.c;
-      //Forma 3: a melhor de se usar junto ao angular.copy
-
+      vm.contatoForm.$setPristine();
       console.log(c);
     }
 
