@@ -2,23 +2,23 @@
 
   var app = angular.module('app');
   app.controller('listaTelefonicaController', listaTelefonicaController);
-  listaTelefonicaController.$inject = ['$scope'];
+  listaTelefonicaController.$inject = ['$scope', '$filter'];
 
-  function listaTelefonicaController($scope) {
+  function listaTelefonicaController($scope, $filter) {
     var vm = $scope;
 
     vm.message = "Lista Telefônica";
 
     vm.contatos = [
-      { nome: "Pedro", telefone: "9999-9999", cor: 'red' },
-      { nome: "Sami", telefone: "8888-9999", cor: 'green' },
-      { nome: "Elson", telefone: "8877-9977", cor: 'yellow' }
+      { nome: $filter("uppercase")("Pedro"), data: new Date(), telefone: "9999-9999", cor: 'red' },
+      { nome: "Sami", data: new Date(), telefone: "8888-9999", cor: 'green' },
+      { nome: "Elson", data: new Date(), telefone: "8877-9977", cor: 'yellow' }
     ];
     vm.operadoras = [
-      { nome: "Vivo", codigo: 14, categoria: "Celular" },
-      { nome: "Oi", codigo: 15, categoria: "Celular" },
-      { nome: "Claro", codigo: 13, categoria: "Fixo" },
-      { nome: "Tim", codigo: 13, categoria: "Fixo" }
+      { nome: "Vivo", codigo: 14, categoria: "Celular", preco: 2},
+      { nome: "Oi", codigo: 15, categoria: "Celular", preco: 1},
+      { nome: "Claro", codigo: 13, categoria: "Fixo", preco: 3},
+      { nome: "Tim", codigo: 13, categoria: "Fixo", preco: 4}
     ];
 
     vm.adicionarContato = function (c) {
@@ -33,7 +33,7 @@
       // nome: nome,
       // telefone: telefone
       //}); //Forma 2: forma mediana de se fazer. Ainda existe burocracia para criação do objeto. Existe maneira melhor com o proprio angularjs para se fazer
-      
+
       vm.contatos.push(angular.copy(c)); //Forma 3: a melhor de se usar junto ao angular.copy
       delete vm.c;
       vm.contatoForm.$setPristine();
@@ -52,7 +52,14 @@
         return contato.selecionado;
       });
     };
+
+    vm.ordenarPor = function (campo) {
+      vm.campoParaOrdenacao = campo;
+      vm.direcaoOrdenacao = !vm.direcaoOrdenacao; // Recebe ele mesmo por ser inicialmente == undefined que é igual a false
+    };
+
   }
+
 
 })();
 
